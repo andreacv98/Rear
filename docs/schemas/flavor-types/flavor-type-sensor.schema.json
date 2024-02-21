@@ -1,0 +1,65 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "title": "Sensor",
+    "description": "Sensor flavor type",
+    "properties": {
+        "Characteristics": {
+            "type": "object",
+            "properties": {
+                "SensorType": {
+                    "type": "string",
+                    "description": "The type of sensor"
+                },
+                "SensorModel": {
+                    "type": "string",
+                    "description": "The model of sensor"
+                },
+                "SensorManufacturer": {
+                    "type": "string",
+                    "description": "The manufacturer of sensor"
+                },
+                "SamplingRate": {
+                    "type": "integer",
+                    "description": "The sampling rate of the sensor in milliseconds"
+                }
+            },
+            "required": [
+                "SensorType",
+                "SensorModel",
+                "SensorManufacturer"
+            ],
+            "additionalProperties": true
+        },
+        "Policy": {
+            "type": "object",
+            "properties": {
+                "Aggregatable": {
+                    "type": "object",
+                    "properties": {
+                        "MinCount": {
+                            "type": "integer",
+                            "description": "Minimum required number of instances of the Flavor."
+                        },
+                        "MaxCount": {
+                            "type": "integer",
+                            "description": "Maximum required number of instances of the Flavor."
+                        }
+                    },
+                    "required": [
+                        "MinCount",
+                        "MaxCount"
+                    ],
+                    "additionalProperties": false
+                }
+            },
+            "required": [
+                "Aggregatable"
+            ]
+        }
+    },
+    "required": [
+        "Characteristics",
+        "Policy"
+    ]
+}

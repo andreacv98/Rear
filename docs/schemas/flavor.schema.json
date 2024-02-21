@@ -1,0 +1,120 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Flavor",
+    "type": "object",
+    "properties": {
+        "FlavorID": {
+            "type": "string",
+            "description": "The unique identifier for a flavor"
+        },
+        "ProviderID": {
+            "type": "string",
+            "description": "The unique identifier for a provider"
+        },
+        "Location": {
+            "type": "object",
+            "properties": {
+                "Latitude": {
+                    "type": "string",
+                    "description": "Latitude of the location"
+                },
+                "Longitude": {
+                    "type": "string",
+                    "description": "Longitude of the location"
+                },
+                "Altitude": {
+                    "type": "string",
+                    "description": "Altitude of the location"
+                },
+                "AdditionalNotes": {
+                    "type": "string",
+                    "description": "Additional notes about the location"
+                }
+            },
+            "additionalProperties": false
+        },
+        "Latency": {
+            "type": "integer",
+            "description": "Latency measured in milliseconds with the consumer"
+        },
+        "SecurityProtocols": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "description": "Security protocols supported by the flavor"
+            }
+        },
+        "NetworkPropertyType": {
+            "type": "string",
+            "description": "Type of network property ensured by the privider (e.g., 5G, Wifi, Ethernet, etc.)"
+        },
+        "FlavorType": {
+            "oneOf": [
+                {
+                    "$ref": "flavor-types/flavor-type-k8slice.schema.json"
+                },
+                {
+                    "$ref": "flavor-types/flavor-type-vm.schema.json"
+                },
+                {
+                    "$ref": "flavor-types/flavor-type-service.schema.json"
+                },
+                {
+                    "$ref": "flavor-types/flavor-type-sensor.schema.json"
+                }
+            ]
+        },
+        "Price": {
+            "type": "object",
+            "properties": {
+                "Amount": {
+                    "type": "string",
+                    "description": "Amount of the price."
+                },
+                "Currency": {
+                    "type": "string",
+                    "description": "Currency of the price."
+                },
+                "Period": {
+                    "type": "string",
+                    "description": "Period of the price."
+                }
+            },
+            "required": [
+                "Amount",
+                "Currency",
+                "Period"
+            ],
+            "additionalProperties": false
+        },
+        "Owner": {
+            "$ref": "node-identity.schema.json"
+        },
+        "OptionalFields": {
+            "type": "object",
+            "properties": {
+                "Availability": {
+                    "type": "boolean",
+                    "description": "Availability flag of the Flavor."
+                },
+                "WorkerID": {
+                    "type": "string",
+                    "description": "ID of the worker that provides the Flavor."
+                }
+            },
+            "required": [
+                "Availability",
+                "WorkerID"
+            ],
+            "additionalProperties": false
+        }
+    },
+    "required": [
+        "FlavorID",
+        "ProviderID",
+        "FlavorType",
+        "Owner",
+        "Price"
+    ],
+    "additionalProperties": false
+}

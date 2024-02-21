@@ -1,0 +1,68 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "title": "Service",
+    "description": "Service flavor type",
+    "properties": {
+        "Characteristics": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "type": "string",
+                    "description": "Name of the flavor."
+                },
+                "Description": {
+                    "type": "string",
+                    "description": "Description of the flavor."
+                },
+                "Tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Tags associated with the flavor."
+                },
+                "Plan": {
+                    "type": "string",
+                    "description": "Plan of the flavor."
+                }
+            },
+            "required": [
+                "Name",
+                "Description",
+                "Tags"
+            ],
+            "additionalProperties": false
+        },
+        "Policy": {
+            "type": "object",
+            "properties": {
+                "Aggregatable": {
+                    "type": "object",
+                    "properties": {
+                        "MinCount": {
+                            "type": "integer",
+                            "description": "Minimum required number of instances of the Flavor."
+                        },
+                        "MaxCount": {
+                            "type": "integer",
+                            "description": "Maximum required number of instances of the Flavor."
+                        }
+                    },
+                    "required": [
+                        "MinCount",
+                        "MaxCount"
+                    ],
+                    "additionalProperties": false
+                }
+            },
+            "required": [
+                "Aggregatable"
+            ]
+        }
+    },
+    "required": [
+        "Characteristics",
+        "Policy"
+    ]
+}
